@@ -1,0 +1,18 @@
+enable
+configure terminal
+interface GigabitEthernet 0/1
+ip address 172.30.10.1 255.255.255.0
+no shutdown
+exit
+interface serial 0/0/0
+ip address 10.1.1.1 255.255.255.252
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 100.0.0.1
+router rip
+versio 2
+passive-interface GigabitEthernet 0/1
+no passive-interface serial 0/0/0
+network 172.30.10.0
+network 10.1.1.0
+do wr
